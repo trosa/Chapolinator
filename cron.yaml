@@ -2,3 +2,4 @@ cron:
 - description: hourly chapolination
   url: /
   schedule: every 30 minutes
+  timezone: America/Sao_Paulo
