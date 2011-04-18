@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #!/usr/bin/python
 
 # Most of this code was pulled from tav@espians.com's code,
@@ -118,7 +119,7 @@ class OAuthClient(object):
 
 		if fetch.status_code not in expected_status:
 			raise ValueError(
-				"Error calling... Got return status: %i [%r]" %
+				"Error calling... Got return status: %i [%r] [%u]" %
 					(fetch.status_code, fetch.content)
 			)
 
@@ -138,9 +139,10 @@ class OAuthClient(object):
 			), method=http_method)
 
 		if fetch.status_code not in expected_status:
+			a = self.get_signed_body(api_method, self.token, http_method, **extra_params)
 			raise ValueError(
 				"Error calling... Got return status: %i [%r]" %
-				(fetch.status_code, fetch.content)
+				(fetch.status_code, fetch.content), a
 			)
 
 		return decode_json(fetch.content)
@@ -310,9 +312,9 @@ class MainHandler(RequestHandler):
 			self.response.out.write("<a href='/oauth/twitter/login'>login</a>")
 			return;
 
-		#chapo = Chapolinator
-		#proverb = chapo.talk()
-		client.post('/statuses/update', 'POST', (200,), {'status': 'Não contavam com minha astúcia!'})
+		chapo = Chapolinator()
+		proverb = chapo.talk()
+		client.post('/statuses/update', status=proverb)
 
 '''
 		write('<a href="/oauth/twitter/logout">Logout from Twitter</a><br /><br />')
