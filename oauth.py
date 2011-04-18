@@ -119,7 +119,7 @@ class OAuthClient(object):
 
 		if fetch.status_code not in expected_status:
 			raise ValueError(
-				"Error calling... Got return status: %i [%r] [%u]" %
+				"Error calling... Got return status: %i [%r]" %
 					(fetch.status_code, fetch.content)
 			)
 
