@@ -139,10 +139,9 @@ class OAuthClient(object):
 			), method=http_method)
 
 		if fetch.status_code not in expected_status:
-			a = self.get_signed_body(api_method, self.token, http_method, **extra_params)
 			raise ValueError(
 				"Error calling... Got return status: %i [%r]" %
-				(fetch.status_code, fetch.content), a
+				(fetch.status_code, fetch.content),
 			)
 
 		return decode_json(fetch.content)
@@ -314,7 +313,7 @@ class MainHandler(RequestHandler):
 
 		chapo = Chapolinator()
 		proverb = chapo.talk()
-		client.post('/statuses/update', status=proverb)
+		client.post('/statuses/update', status=proverb.decode('latin-1').encode('utf-8'))
 
 '''
 		write('<a href="/oauth/twitter/logout">Logout from Twitter</a><br /><br />')

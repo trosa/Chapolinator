@@ -6,4 +6,5 @@ api_version: 1
 handlers:
 - url: /.*
   script: oauth.py
+  login: admin
 
