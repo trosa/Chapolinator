@@ -21,6 +21,7 @@ from simplejson import loads as decode_json
 
 sys.path.insert(0, join_path(dirname(__file__), 'lib')) # extend sys.path
 
+from chapolinator import Chapolinator
 
 from google.appengine.api.urlfetch import fetch as urlfetch, GET, POST
 from google.appengine.ext import db
@@ -306,17 +307,12 @@ class MainHandler(RequestHandler):
 		client = OAuthClient('twitter', self)
 
 		if not client.get_cookie():
-			self.response.out.write(template.render('not-logged.html',{}));
+			self.response.out.write("<a href='/oauth/twitter/login'>login</a>")
 			return;
 
-		data = dict(
-			info      = client.get('/account/verify_credentials'),
-			rate_info = client.get('/account/rate_limit_status'),
-			timeline  = client.get('/statuses/home_timeline'),
-		);
-		for status in data['timeline']:
-			status['created_at'] = parse_twitter_time(status['created_at']);
-		self.response.out.write(template.render('logged.html',data));
+		#chapo = Chapolinator
+		#proverb = chapo.talk()
+		client.post('/statuses/update', 'POST', (200,), {'status': 'Não contavam com minha astúcia!'})
 
 '''
 		write('<a href="/oauth/twitter/logout">Logout from Twitter</a><br /><br />')
