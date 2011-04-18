@@ -1,0 +1,42 @@
+<html>
+	<head>
+		<meta http-equiv="refresh" content="60">
+		<link type="text/css" rel="stylesheet" href="static/styles.css" />
+	</head>
+	<body>
+		<h1>tw-simple</h1>
+
+		<div class="section" id="you">
+			<h2>you</h2>
+			<dl>
+				<dt>screen name</dt>
+				<dd>{{ info.screen_name }}</dd>
+				<dt>last tweet</dt>
+				<dd>{{ info.status.text }}</dd>
+			</dl>
+			<br class='clear'/>
+		</div>
+
+		<div class="section" id="timeline">
+			<h2>timeline</h2>
+			<ul>
+			{% for status in timeline %}
+				<li>
+					<span class="created_at">{{ status.created_at }}</span>
+					<span class="screen_name">{{ status.user.screen_name }}:</span>
+					<span class="tweet">{{ status.text }}</span>
+				</li>
+			{% endfor %}
+			</ul>
+		</div>
+
+		<div class="section" id="tweet">
+			<form method="POST" action="tweet" >
+				<input type="text" name"tweet" maxlength="140" />
+				<button type="submit">
+					&gt;
+				</button>
+			</form>
+		</div>
+	</body>
+</html>
