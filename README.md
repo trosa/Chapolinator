@@ -1,19 +1,7 @@
-tw-simple
-=========
+Chapolinator
 
-a lightweight, no-nonsense, no-frills web twitter client.
+===
 
-intended for deploy as Google AppEngine application
+Um gerador automático de ditados do Chapolin, baseado em cadeias de Markov e muita malícia.
 
-wishlist
---------
-
-* fast
-* reliable
-* all features keyboard acessible
-
-do-not-wishlist
-----------
-
-* no graphics
-* no animations
+por @trsilva
