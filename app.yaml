@@ -7,4 +7,5 @@ handlers:
 - url: /.*
   script: oauth.py
   login: admin
+  timezone: America/Sao_Paulo
 
