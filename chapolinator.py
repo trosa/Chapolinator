@@ -46,9 +46,13 @@ class Chapolinator():
             w1, w2 = self.words[seed], self.words[seed+1]
             while not len(chapo_talk) > 4 and len(' '.join(chapo_talk)) <= 123 or not ' '.join(chapo_talk).endswith('.'):
                 if ' '.join(chapo_talk + [w1]) in self.phrases:
-                    seed = random.choice(mid_indexes[:-3])
-                    w1, w2 = self.words[seed], self.words[seed+1]
-                    chapo_talk.append(w1)
+                    next_keys = filter(lambda key: key[0] == chapo_talk[-1], self.wordcache.keys())
+                    if len(next_keys) < 3:
+                        seed = random.choice(mid_indexes[:-3])
+                        w1, w2 = self.words[seed], self.words[seed+1]
+                        chapo_talk.append(w1)
+                    else:
+                        w1, w2 = random.choice(next_keys)
                 elif w1.endswith('.') and len(chapo_talk) <= 4:
                     chapo_talk.append(w1.strip('.').lower())
                 elif w1[0].isupper() and len(chapo_talk) > 0:
@@ -56,7 +60,7 @@ class Chapolinator():
                 else:
                     chapo_talk.append(w1)
                 nextcache = self.wordcache[(w1, w2)]
-                if (w1.lower(), w2) in self.wordcache:
+                if w1[-1].isupper() and (w1.lower(), w2) in self.wordcache:
                     nextcache += self.wordcache[(w1.lower(), w2)]
                 w1, w2 = w2, random.choice(nextcache)
 
