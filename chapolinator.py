@@ -56,7 +56,9 @@ class Chapolinator():
                 else:
                     chapo_talk.append(w1)
                 nextcache = self.wordcache[(w1, w2)]
-                w1, w2 = w2, random.choice(self.wordcache[(w1, w2)])
+                if (w1.lower(), w2) in self.wordcache:
+                    nextcache += self.wordcache[(w1.lower(), w2)]
+                w1, w2 = w2, random.choice(nextcache)
 
         if chapo_talk:
             #print ' '.join(chapo_talk).decode('latin-1').encode('utf-8'), ' | ', len(chapo_talk), ' | ', len(' '.join(chapo_talk))
