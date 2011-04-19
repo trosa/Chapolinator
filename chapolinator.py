@@ -64,3 +64,5 @@ class Chapolinator():
             #print ' '.join(chapo_talk).decode('latin-1').encode('utf-8'), ' | ', len(chapo_talk), ' | ', len(' '.join(chapo_talk))
             return ' '.join(chapo_talk)
 
+#chapo = Chapolinator()
+#print chapo.talk()
