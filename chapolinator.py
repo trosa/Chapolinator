@@ -44,12 +44,12 @@ class Chapolinator():
             chapo_talk = []
             seed = random.choice(ini_indexes)
             w1, w2 = self.words[seed], self.words[seed+1]
-            while not len(chapo_talk) > 7 and len(' '.join(chapo_talk)) <= 123 or not ' '.join(chapo_talk).endswith('.'):
+            while not len(chapo_talk) > 4 and len(' '.join(chapo_talk)) <= 123 or not ' '.join(chapo_talk).endswith('.'):
                 if ' '.join(chapo_talk + [w1]) in self.phrases:
                     seed = random.choice(mid_indexes[:-3])
                     w1, w2 = self.words[seed], self.words[seed+1]
                     chapo_talk.append(w1)
-                elif w1.endswith('.') and len(chapo_talk) <= 7:
+                elif w1.endswith('.') and len(chapo_talk) <= 4:
                     chapo_talk.append(w1.strip('.').lower())
                 elif w1[0].isupper() and len(chapo_talk) > 0:
                     chapo_talk.append(w1.lower())
