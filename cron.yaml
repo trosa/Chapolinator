@@ -1,5 +1,5 @@
 cron:
 - description: hourly chapolination
   url: /
-  schedule: every 45 minutes from 6:00 to 1:00
+  schedule: every 30 minutes from 6:00 to 1:00
   timezone: America/Sao_Paulo
