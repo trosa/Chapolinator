@@ -36,8 +36,8 @@ class Chapolinator():
         Puts together some messed up proverb, Chapolin Colorado-style
         '''
         #the below line requires that the corpus is made of well-formed phrases
-        ini_indexes = [self.words.index(word) for word in self.words if word[0].isupper()]
-        mid_indexes = [self.words.index(word) for word in self.words if word[0].islower() and not word.endswith('.')]
+        ini_indexes = [idx for idx in xrange(len(self.words)) if self.words[idx][0].isupper()]
+        mid_indexes = [idx for idx in xrange(len(self.words)) if self.words[idx][0].islower() and not self.words[idx].endswith('.')]
         chapo_talk = []
 
         while not ' '.join(chapo_talk).endswith('.') or ' '.join(chapo_talk) in self.phrases:
