@@ -40,7 +40,7 @@ class Chapolinator():
         mid_indexes = [idx for idx in xrange(len(self.words)) if self.words[idx][0].islower() and not self.words[idx].endswith('.')]
         chapo_talk = []
 
-        while not ' '.join(chapo_talk).endswith('.') or ' '.join(chapo_talk) in self.phrases:
+        while not ' '.join(chapo_talk).endswith('.') or ' '.join(chapo_talk) in self.phrases or not ' '.join(chapo_talk)[0].isupper():
             chapo_talk = []
             seed = random.choice(ini_indexes)
             w1, w2 = self.words[seed], self.words[seed+1]
@@ -53,7 +53,7 @@ class Chapolinator():
                         chapo_talk.append(w1)
                     else:
                         w1, w2 = random.choice(next_keys)
-                elif w1.endswith('.') and len(chapo_talk) <= 4:
+                elif w1.endswith('.') and len(chapo_talk) < 4:
                     chapo_talk.append(w1.strip('.').lower())
                 elif w1[0].isupper() and len(chapo_talk) > 0:
                     chapo_talk.append(w1.lower())
